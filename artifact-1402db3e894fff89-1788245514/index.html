@@ -5,48 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Meta-Eve · Prompt + DB → App</title>
 <meta name="description" content="Meta-Eve 把数据库文档和业务需求变成可交互 App。">
-<script id="pi-debug-bootstrap">
-(() => {
-  const emit = (event, extra = {}) => console.info('[pi-debug]', JSON.stringify({
-    event,
-    atMs: Math.round(performance.now() * 10) / 10,
-    ...extra,
-  }));
-  window.__piDebugEmit = emit;
-  emit('bootstrap', {
-    transferProtocol: location.protocol,
-    connection: navigator.connection ? {
-      effectiveType: navigator.connection.effectiveType,
-      downlink: navigator.connection.downlink,
-      rtt: navigator.connection.rtt,
-      saveData: navigator.connection.saveData,
-    } : null,
-  });
-  new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) emit('paint', { name: entry.name, startTime: entry.startTime });
-  }).observe({ type: 'paint', buffered: true });
-  if (PerformanceObserver.supportedEntryTypes.includes('largest-contentful-paint')) {
-    new PerformanceObserver((list) => {
-      const entry = list.getEntries().at(-1);
-      if (entry) emit('lcp', { startTime: entry.startTime, size: entry.size, element: entry.element?.tagName || null });
-    }).observe({ type: 'largest-contentful-paint', buffered: true });
-  }
-  document.addEventListener('DOMContentLoaded', () => emit('dom-content-loaded'));
-  addEventListener('load', () => {
-    const nav = performance.getEntriesByType('navigation')[0];
-    emit('window-load', nav ? {
-      ttfbMs: nav.responseStart,
-      responseEndMs: nav.responseEnd,
-      domInteractiveMs: nav.domInteractive,
-      domContentLoadedMs: nav.domContentLoadedEventEnd,
-      loadMs: nav.loadEventEnd,
-      transferSize: nav.transferSize,
-      encodedBodySize: nav.encodedBodySize,
-      decodedBodySize: nav.decodedBodySize,
-    } : {});
-  });
-})();
-</script>
 <style>
 :root{--ink:#10253d;--blue:#2456d6;--orange:#e9793d;--paper:#f3f6f9;--line:#cfd8e3;--muted:#66788c}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font-family:"Avenir Next","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
@@ -74,12 +32,6 @@ footer{padding:22px clamp(18px,5vw,76px);border-top:1px solid var(--line);backgr
 <footer><span>Source project: /Users/liushiyuwin/projects/workbench</span><span>Pi session ID: 01a05bac-870c-7c74-9679-bcd034bad28f</span></footer>
 <script>
 const video=document.getElementById('pitch-video');
-const piDebugEmit=window.__piDebugEmit||(()=>{});
-piDebugEmit('video-script-bound',{readyState:video.readyState,networkState:video.networkState,posterChars:video.poster.length,sourceChars:video.querySelector('source')?.src.length||0});
-for(const event of ['loadstart','loadedmetadata','loadeddata','canplay','playing','error']){
-  video.addEventListener(event,()=>piDebugEmit(`video-${event}`,{readyState:video.readyState,networkState:video.networkState,currentTime:video.currentTime}));
-}
-if(video.readyState>=1)piDebugEmit('video-metadata-already-ready',{readyState:video.readyState,networkState:video.networkState});
 document.querySelectorAll('[data-time]').forEach((button)=>button.addEventListener('click',()=>{video.currentTime=Number(button.dataset.time);video.play();}));
 </script>
 </body>
