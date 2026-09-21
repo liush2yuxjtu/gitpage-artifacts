@@ -222,13 +222,13 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#171c24;
       <rect width="500" height="220" rx="36" fill="#2a1218" stroke="#fb7185" stroke-width="5"/>
       <text x="250" y="70" text-anchor="middle" fill="#fecdd3" font-size="34" font-weight="900">旧 Grokbot Consumer</text>
       <text x="250" y="122" text-anchor="middle" fill="#fb7185" font-size="56" font-weight="900">ZZZ…</text>
-      <text x="250" y="177" text-anchor="middle" fill="#fda4af" font-size="23">收到 wake，但没有 claim / execute</text>
+      <text x="250" y="177" text-anchor="middle" fill="#fda4af" font-size="23">2026-09-21 实测：accepted，但 90 秒不 settle</text>
     </g>
     <path d="M670 630 V705" stroke="#fb7185" stroke-width="7" marker-end="url(#a4r)"/>
     <g transform="translate(470 720)">
       <rect width="400" height="110" rx="28" fill="#161b23" stroke="#64748b" stroke-width="3" stroke-dasharray="10 8"/>
       <text x="200" y="50" text-anchor="middle" fill="#cbd5e1" font-size="26" font-weight="900">Mac mini</text>
-      <text x="200" y="83" text-anchor="middle" fill="#94a3b8" font-size="19">这次 E2E 命令还没真正收到</text>
+      <text x="200" y="83" text-anchor="middle" fill="#94a3b8" font-size="19">MachineShell 没被模型 turn 调用</text>
     </g>
     <g transform="translate(70 400)">
       <rect width="280" height="210" rx="34" fill="#102219" stroke="#4ade80" stroke-width="4"/>
@@ -239,7 +239,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#171c24;
     </g>
   </svg>
   </div>
-  <div class="verdict">小朋友版本：<strong>电脑已经会做题了，权限也给了；现在只是“递作业的小机器人”那条旧路睡着了。</strong></div>
+  <div class="verdict">小朋友版本：<strong>电脑权限已经给了；但今天重新实测，Grok Bot 会说“收到”，却 90 秒都不开始做，所以命令还进不了 MachineShell。</strong></div>
 </section>
 
 <section class="section">
@@ -267,12 +267,12 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#171c24;
 
 <section class="section">
   <div class="kicker">一句话总结</div>
-  <h2>现在不是“不会做”。<br>是“最后一次真实验收还没被送到 Mac mini 执行”。</h2>
+  <h2>现在不是“不会做”。<br>是“最后一次真实验收还进不了已授权的 Grok Bot MachineShell”。</h2>
   <div class="legend">
     <span><i class="dot" style="background:var(--green)"></i>权限：完成</span>
     <span><i class="dot" style="background:var(--green)"></i>Launcher 方案：完成</span>
     <span><i class="dot" style="background:var(--yellow)"></i>真实 E2E：待执行</span>
-    <span><i class="dot" style="background:var(--red)"></i>旧 Grokbot consumer：卡住</span>
+    <span><i class="dot" style="background:var(--red)"></i>Grok Bot model turn：accepted 但不 settle</span>
   </div>
 </section>
 
